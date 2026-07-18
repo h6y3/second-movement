@@ -165,3 +165,13 @@ SRCS += \
 
 # Finally, leave this line at the bottom of the file.
 include $(GOSSAMER_PATH)/rules.mk
+
+# Always wipe $(BUILD) before building: gossamer's generated per-object
+# dependency tracking is broken (the eval-generated explicit compile rules
+# leave $* empty, so -MD writes to build/.d and -include picks up nothing).
+# Full rebuilds are cheap, so always clean first to avoid stale artifacts
+# from header edits. To build without cleaning, invoke `make all` directly.
+.PHONY: rebuild
+.DEFAULT_GOAL := rebuild
+rebuild: clean
+	@$(MAKE) all

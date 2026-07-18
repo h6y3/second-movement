@@ -119,8 +119,9 @@ Minute-only presets look identical under either endianness (minutes is always by
 - `origin` = `joeycastillo/second-movement` — **upstream truth**. Fetch latest here.
 - `fork`   = `h6y3/second-movement` — your GitHub fork; push here.
 - Firmware work lives on branch **`custom-firmware-pro-custom`** = upstream
-  `main` + a surgical 3-file patch (`Makefile`, `movement_config.h`,
-  `watch-faces/complication/timer_face.c`) kept linear via rebase. Build from it.
+  `main` + a surgical 3-file firmware patch (`Makefile`, `movement_config.h`,
+  `watch-faces/complication/timer_face.c`) kept linear via rebase, plus two
+  workflow files (`sync.sh`, `AGENTS.md`). Build from it.
 - `./sync.sh` = fetch `origin` → rebase `custom-firmware-pro-custom` onto
   `origin/main` → `push fork --force-with-lease`. Run it to absorb upstream work.
   On conflict it stops with hints (patch touches 3 small spots; resolve →
